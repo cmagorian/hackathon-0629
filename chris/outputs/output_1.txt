@@ -1,0 +1,113 @@
+
+-- Table: equipment
+equipment_id SERIAL PRIMARY KEY,
+equipment_name VARCHAR(255) NOT NULL;
+
+-- Table: exercise
+exercise_id SERIAL PRIMARY KEY,
+exercise_name VARCHAR(255) NOT NULL,
+equipment_id INTEGER REFERENCES equipment(equipment_id);
+
+-- Table: workout
+workout_id SERIAL PRIMARY KEY,
+workout_name VARCHAR(255) NOT NULL;
+
+-- Table: workout_exercise
+workout_exercise_id SERIAL PRIMARY KEY,
+workout_id INTEGER REFERENCES workout(workout_id),
+exercise_id INTEGER REFERENCES exercise(exercise_id),
+sets INTEGER NOT NULL,
+reps INTEGER NOT NULL;
+
+-- Table: day
+day_id SERIAL PRIMARY KEY,
+day_number INTEGER NOT NULL,
+workout_id INTEGER REFERENCES workout(workout_id);
+
+INSERT INTO equipment (equipment_name) VALUES ('gym'), ('dumbbells'), ('barbell'), ('cable'), ('machine');
+
+INSERT INTO exercise (exercise_name, equipment_id) VALUES
+('barbell back squats', 3),
+('flat barbell bench press', 2),
+('seated cable rows', 4),
+('seated dumbbell shoulder press', 2),
+('cable rope triceps pushdowns', 4),
+('lateral raises', 2),
+('seated calf raises', 2),
+('planks', 1),
+('barbell or trap bar deadlifts', 3),
+('pullups or lat pulldowns', 4),
+('barbell or dumbbell incline press', 2),
+('machine shoulder press', 4),
+('barbell or dumbbell biceps curls', 2),
+('reverse machine fly', 4),
+('standing calf raises', 2),
+('leg press', 2),
+('T-bar rows', 4),
+('machine or dumbbell chest fly', 2),
+('one-arm dumbbell shoulder press', 2),
+('dumbbell or machine triceps extensions', 2),
+('cable or dumbbell front raises', 2),
+('decline crunches', 1),
+('barbell deadlift', 3),
+('barbell hip thrusts', 1),
+('Romanian dumbbell deadlifts', 2),
+('lying leg curls', 1),
+('hyperextensions', 4),
+('machine preacher curls', 4),
+('barbell shrugs', 3),
+('seated calf raises', 2),
+('face pulls', 4),
+('overhead press', 3),
+('incline dumbbell bench press', 2),
+('one-arm cable rows', 4),
+('cable lateral raises', 4),
+('dumbbell shrugs', 2),
+('machine preacher curls', 4),
+('barbell front squats', 3),
+('glute ham raises', 1),
+('walking dumbbell lunges', 2),
+('seated leg extensions', 1),
+('hanging leg raises', 1);
+
+INSERT INTO workout (workout_name) VALUES
+('Full body'),
+('Upper body'),
+('Lower body');
+
+INSERT INTO workout_exercise (workout_id, exercise_id, sets, reps) VALUES
+(1, 1, 3, 5),
+(1, 2, 3, 5),
+(1, 3, 3, 6-8),
+(1, 4, 3, 6-8),
+(1, 5, 3, 8-10),
+(1, 6, 3, 10-12),
+(1, 7, 3, 10-12),
+(1, 8, 3, 30),
+(2, 9, 4, 6-8),
+(2, 10, 3, 6-8),
+(2, 11, 3, 8-10),
+(2, 12, 3, 8-10),
+(2, 13, 3, 10-12),
+(2, 14, 3, 10-12),
+(2, 15, 3, 10-12),
+(2, 16, 4, 12-15),
+(3, 17, 3, 6-8),
+(3, 18, 3, 8-10),
+(3, 19, 3, 10-12),
+(3, 20, 3, 10-12),
+(3, 21, 3, 10-12),
+(3, 22, 3, 10-12),
+(3, 23, 3, 10-12),
+(3, 24, 4, 12-15);
+
+INSERT INTO day (day_number, workout_id) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(1, 2),
+(2, 2),
+(3, 2),
+(1, 3),
+(2, 3),
+(3, 3);

@@ -1,0 +1,89 @@
+## Marathon Training Workout Log for a Runner
+
+### Introduction
+Training for a marathon requires a strategic and gradual increase in mileage to prevent injury and build endurance. This blog will provide a 3-month training plan to help a runner progress from running 5 miles a day to completing a half marathon distance, running four times a week.
+
+### Training Plan Overview
+This plan includes a mix of running workouts, rest days, and cross-training to ensure a balanced and effective approach. Each week, the mileage will gradually increase to help the runner build stamina and confidence.
+
+### Weekly Workout Schedule
+#### Week 1
+| Day        | Workout                    | Distance/Time     |
+|------------|----------------------------|-------------------|
+| Monday     | Run                        | 5 miles           |
+| Tuesday    | Rest or Cross-Training     | 30 minutes        |
+| Wednesday  | Run                        | 5 miles           |
+| Thursday   | Rest or Cross-Training     | 30 minutes        |
+| Friday     | Run                        | 5 miles           |
+| Saturday   | Rest                       | -                 |
+| Sunday     | Long Run                   | 6 miles           |
+
+#### Week 2
+| Day        | Workout                    | Distance/Time     |
+|------------|----------------------------|-------------------|
+| Monday     | Run                        | 5 miles           |
+| Tuesday    | Rest or Cross-Training     | 30 minutes        |
+| Wednesday  | Run                        | 6 miles           |
+| Thursday   | Rest or Cross-Training     | 30 minutes        |
+| Friday     | Run                        | 5 miles           |
+| Saturday   | Rest                       | -                 |
+| Sunday     | Long Run                   | 7 miles           |
+
+#### Week 3
+| Day        | Workout                    | Distance/Time     |
+|------------|----------------------------|-------------------|
+| Monday     | Run                        | 5 miles           |
+| Tuesday    | Rest or Cross-Training     | 30 minutes        |
+| Wednesday  | Run                        | 6 miles           |
+| Thursday   | Rest or Cross-Training     | 30 minutes        |
+| Friday     | Run                        | 5 miles           |
+| Saturday   | Rest                       | -                 |
+| Sunday     | Long Run                   | 8 miles           |
+
+### Monthly Mileage Progression
+#### Month 1
+- **Weekly Mileage:** Start with 21 miles, increase to 23 miles by the end of the month.
+- **Long Runs:** Progress from 6 to 8 miles.
+
+#### Month 2
+| Day        | Workout                    | Distance/Time     |
+|------------|----------------------------|-------------------|
+| Monday     | Run                        | 6 miles           |
+| Tuesday    | Rest or Cross-Training     | 30 minutes        |
+| Wednesday  | Run                        | 6 miles           |
+| Thursday   | Rest or Cross-Training     | 30 minutes        |
+| Friday     | Run                        | 6 miles           |
+| Saturday   | Rest                       | -                 |
+| Sunday     | Long Run                   | 9 miles           |
+
+- **Weekly Mileage:** Start with 27 miles, increase to 29 miles by the end of the month.
+- **Long Runs:** Progress from 9 to 11 miles.
+
+#### Month 3
+| Day        | Workout                    | Distance/Time     |
+|------------|----------------------------|-------------------|
+| Monday     | Run                        | 7 miles           |
+| Tuesday    | Rest or Cross-Training     | 30 minutes        |
+| Wednesday  | Run                        | 7 miles           |
+| Thursday   | Rest or Cross-Training     | 30 minutes        |
+| Friday     | Run                        | 7 miles           |
+| Saturday   | Rest                       | -                 |
+| Sunday     | Long Run                   | 12 miles          |
+
+- **Weekly Mileage:** Start with 33 miles, increase to 36 miles by the end of the month.
+- **Long Runs:** Progress from 12 to 13.1 miles (half marathon).
+
+### Example Week 8 Log
+
+| Day        | Exercise/Activity         | Distance/Time     | Notes                           |
+|------------|---------------------------|-------------------|---------------------------------|
+| Monday     | Run                       | 6 miles           | Felt good, steady pace          |
+| Tuesday    | Cross-Training (Cycling)  | 30 minutes        | Light cycling, kept heart rate up|
+| Wednesday  | Run                       | 6 miles           | Pushed a bit, slight fatigue    |
+| Thursday   | Rest                      | -                 | Much needed rest, stretching    |
+| Friday     | Run                       | 6 miles           | Comfortable, moderate pace      |
+| Saturday   | Rest                      | -                 | Relaxed, focused on nutrition   |
+| Sunday     | Long Run                  | 9 miles           | Strong finish, felt accomplished|
+
+### Conclusion
+This gradual progression ensures that your body adapts to the increased demands of marathon training. Keep tracking your progress, listen to your body, and enjoy the journey to your half marathon. Happy running!
