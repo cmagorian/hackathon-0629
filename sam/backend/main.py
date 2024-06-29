@@ -20,9 +20,39 @@ from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
 import os
 
+import psycopg2
+
 OCTOAI_API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjNkMjMzOTQ5In0.eyJzdWIiOiJkNTY1Y2Q3YS0zYmNjLTQzNDgtOGQxYy1mMGY0ZjY0ODkyYzciLCJ0eXBlIjoidXNlckFjY2Vzc1Rva2VuIiwidGVuYW50SWQiOiJkMzRmOGVkZC1kMzE1LTQ4NTktOTc0Zi03MjJiMzNlNDA5ZDIiLCJ1c2VySWQiOiJhZTMxM2ExZS1lYTI3LTRkOTItYjk5OS1iOTNlY2Q0YjQ3NTgiLCJhcHBsaWNhdGlvbklkIjoiYTkyNmZlYmQtMjFlYS00ODdiLTg1ZjUtMzQ5NDA5N2VjODMzIiwicm9sZXMiOlsiRkVUQ0gtUk9MRVMtQlktQVBJIl0sInBlcm1pc3Npb25zIjpbIkZFVENILVBFUk1JU1NJT05TLUJZLUFQSSJdLCJhdWQiOiIzZDIzMzk0OS1hMmZiLTRhYjAtYjdlYy00NmY2MjU1YzUxMGUiLCJpc3MiOiJodHRwczovL2lkZW50aXR5Lm9jdG8uYWkiLCJpYXQiOjE3MTk2Nzg3NTl9.m3RpRr3vLoGekWhvk1fXHlTBAg1fkkO2V2eMfXddjLf30taFXnAOLoJIWHsGLupliLVW3JL9_wxPRhL2cGpDH_1_PeWDUYxKk_ZY1RjL9s_yoJf7fGeEy9-VPbmvjfYXcQTa_sxE99GeqwaODud26e_O04Q9n2KiNSwdeeion6ki9ctpIbDXZ3Wit_ltumGY0axDRInfm_QHwvo92r4W-3g8jN4lskS7ZA7CT5LCRq7GzFs5E2HsZq-59RnVhxnray6nG5fyG3U67Ff0ZCTuRaDY2DqRDOgQw1zRqTYMoW8zeOfozRxlGygdRcRU3AxnUOGOi7yijetkE9I60H9qlg"
 
 chains = {}
+
+conn_params = {
+    'dbname': 'postgres',
+    'user': 'postgres.rhgcwisgguibvcbqclrb',
+    'password': 'Nosnatef78!',
+    'host': 'aws-0-us-west-1.pooler.supabase.com',
+    'port': '6543'
+}
+
+try:
+    conn = psycopg2.connect(**conn_params)
+    print("Connection established")
+except Exception as e:
+    print(f"Error connecting to database: {e}")
+    exit()
+
+cur = conn.cursor()
+
+def get_string_before_substring(input_string, substring):
+    # Find the position of the first occurrence of the substring
+    position = input_string.find(substring)
+    
+    # If the substring is found, slice the string up to that position
+    if position != -1:
+        return input_string[:position]
+    else:
+        # If the substring is not found, return the original string
+        return input_string
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -59,7 +89,7 @@ async def lifespan(app: FastAPI):
         octoai_api_token=OCTOAI_API_TOKEN
     )
     retriever = vector_store.as_retriever()
-    template="""You are a data analyst. You will be given unstructured data texts and figure out the schema. Return the schema. Be as general as possible so the schema can be used on most data input. Return the schema as PosgreSQL CREATE TABLE query. If possible, create multiple tables and relations between them when you see fit.
+    template="""You are a data analyst. You will be given unstructured data texts and figure out the schema. Return the schema. Be as general as possible so the schema can be used on most data input. Return the schema as PosgreSQL CREATE TABLE query. If possible, create multiple tables and relations between them when you see fit. No explanation. Only show the whole SQL script.
     Document: {question} 
     Context: {context} 
     Answer:"""
@@ -87,10 +117,36 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
+    create_table_query = """
+    CREATE TABLE IF NOT EXISTS food (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        calories INTEGER NOT NULL
+    );
+    """
+
+    try:
+        cur.execute(create_table_query)
+        conn.commit()  # Commit the transaction
+        print("Table created successfully")
+    except Exception as e:
+        print(f"Error creating table: {e}")
+        conn.rollback()  # Rollback in case of error
+
     return {"Hello": "World"}
 
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
-    result = chains["chain"].invoke("Show me the schema creation script")
+    result = chains["chain"].invoke("Show me the schema creation script, no explation, only the raw SQL script")
+    substring = "```"
+    sql_result = get_string_before_substring(result, substring)
+    
+    try:
+        cur.execute(sql_result)
+        conn.commit()  # Commit the transaction
+        print("Table created successfully")
+    except Exception as e:
+        print(f"Error creating table: {e}")
+        conn.rollback()  # Rollback in case of error
     return {"result": result}
