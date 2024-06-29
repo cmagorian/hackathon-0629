@@ -1,7 +1,9 @@
-# This is a sample Python script.
+from langgraph.graph import MessageGraph
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+builder = MessageGraph()
+builder.add_node("generate", generation_node)
+builder.add_node("reflect", reflection_node)
+builder.set_entry_point("generate")
 
 
 def print_hi(name):
