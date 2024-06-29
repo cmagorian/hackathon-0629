@@ -1,3 +1,4 @@
+from numpy import record
 import pyaudio
 import wave
 from dotenv import load_dotenv
@@ -43,13 +44,10 @@ def record_audio(output_filename, duration=5):
         wf.setframerate(rate)
         wf.writeframes(b"".join(frames))
 
-
-if __name__ == "__main__":
-    audio = record_audio("output.wav", duration=5)
+def transcribe_audio():
+    audio = record_audio("output.wav", duration=10)
     # Need OPENAI_API_KEY in .env or pass it in
     client = OpenAI()
-
     audio_file = open("output.wav", "rb")
     transcript = client.audio.transcriptions.create(model="whisper-1", file=audio_file)
-
-    print(transcript)
+    return transcript
