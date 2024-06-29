@@ -3,3 +3,6 @@
 .python-version
 .DS_Store
 *.pyc
+
+chris/frontend/shadcn-chat/node_modules/
+chris/frontend/shadcn-chat/.next/

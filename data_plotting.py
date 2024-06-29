@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.schema import Document
+OCTOAI_API_TOKEN = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjNkMjMzOTQ5In0.eyJzdWIiOiJkNTY1Y2Q3YS0zYmNjLTQzNDgtOGQxYy1mMGY0ZjY0ODkyYzciLCJ0eXBlIjoidXNlckFjY2Vzc1Rva2VuIiwidGVuYW50SWQiOiJkMzRmOGVkZC1kMzE1LTQ4NTktOTc0Zi03MjJiMzNlNDA5ZDIiLCJ1c2VySWQiOiJhZTMxM2ExZS1lYTI3LTRkOTItYjk5OS1iOTNlY2Q0YjQ3NTgiLCJhcHBsaWNhdGlvbklkIjoiYTkyNmZlYmQtMjFlYS00ODdiLTg1ZjUtMzQ5NDA5N2VjODMzIiwicm9sZXMiOlsiRkVUQ0gtUk9MRVMtQlktQVBJIl0sInBlcm1pc3Npb25zIjpbIkZFVENILVBFUk1JU1NJT05TLUJZLUFQSSJdLCJhdWQiOiIzZDIzMzk0OS1hMmZiLTRhYjAtYjdlYy00NmY2MjU1YzUxMGUiLCJpc3MiOiJodHRwczovL2lkZW50aXR5Lm9jdG8uYWkiLCJpYXQiOjE3MTk2Nzg3NTl9.m3RpRr3vLoGekWhvk1fXHlTBAg1fkkO2V2eMfXddjLf30taFXnAOLoJIWHsGLupliLVW3JL9_wxPRhL2cGpDH_1_PeWDUYxKk_ZY1RjL9s_yoJf7fGeEy9-VPbmvjfYXcQTa_sxE99GeqwaODud26e_O04Q9n2KiNSwdeeion6ki9ctpIbDXZ3Wit_ltumGY0axDRInfm_QHwvo92r4W-3g8jN4lskS7ZA7CT5LCRq7GzFs5E2HsZq-59RnVhxnray6nG5fyG3U67Ff0ZCTuRaDY2DqRDOgQw1zRqTYMoW8zeOfozRxlGygdRcRU3AxnUOGOi7yijetkE9I60H9qlg"
 
 
 embeddings = HuggingFaceEmbeddings()
@@ -63,9 +64,7 @@ def load_workout_data(json_path):
     return file_texts
 
 
-
-
-file_texts = load_workout_data(json_data)
+file_texts = load_workout_data({"day": 1, "exercises": [{"name": "Bench Press", "sets": 3, "reps": 10}, {"name": "Squat", "sets": 5, "reps": 5}]})
 llm_plotter = OctoAIEndpoint(
         model="meta-llama-3-8b-instruct",
         max_tokens=1024,
@@ -93,7 +92,7 @@ def parse_python_code(code):
         print("No Python code found.")
     return code
 
-# code = plotter.respond("Show me the Python code to visualize the data")
-# print(code)
-code = parse_python_code(code)
-exec(code)
+code = plotter.respond("Show me the Python code to visualize the data")
+print(code)
+# code = parse_python_code(code)
+# exec(code)
